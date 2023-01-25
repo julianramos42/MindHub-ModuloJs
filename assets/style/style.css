@@ -215,6 +215,13 @@ footer>div .redes a img {
     flex-direction: column;
 }
 
+.contact-main .form-container{
+    width: 100%;
+    margin: 4% 0;
+    display: flex;
+    justify-content: center;
+}
+
 .contact-main .contact-form {
     display: inline-block;
     width: 55%;
