@@ -381,13 +381,17 @@ tr {
 
     /* STATS */
 
+
+
     .stats-main .table {
         width: 100%;
         margin: 1% 0;
+        height: auto;
     }
     
     .stats-main .table table{
         width: 95%;
+        height: 38rem;
         margin: 0 auto;
     }
     
