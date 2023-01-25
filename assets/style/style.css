@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-.favicon{
+.favicon {
     width: 10%;
 }
 
@@ -27,11 +27,11 @@ header>div>a {
 }
 
 header>div>a img {
-    width: 100%;
+    width: 7rem;
 }
 
-header>div .navbar{
-    width: 50%;
+header>div .navbar {
+    width: 35rem;
 }
 
 header>div .navbar .offcanvas-body {
@@ -47,7 +47,7 @@ header>div>.navbar .offcanvas-body a {
     padding: .3rem 1rem;
 }
 
-header>div>.navbar .offcanvas-body a:hover{
+header>div>.navbar .offcanvas-body a:hover {
     background-color: #cc0026;
     color: #efefef;
     transition: all 1s;
@@ -58,17 +58,25 @@ header>div>.navbar .offcanvas-body .page {
     color: #efefef;
 }
 
-header .navbar button{
-    background-color: #cc0026;
+header .navbar button {
+    background-color: #5e4b55;
 }
 
-header .navbar button:hover{
-    background-color: #cc0026;
+header .navbar button:hover {
+    background-color: #5e4b55;
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+body {
+    background-color: #febeac;
 }
 
 /* INDEX AND EVENTS */
 
-main{
+main {
     min-height: 80vh;
 }
 
@@ -81,50 +89,52 @@ main #carouselExample {
     justify-content: center;
 }
 
-main form {
+.events-main form {
     width: 80%;
     margin: 2.5rem auto;
     display: flex;
     justify-content: space-between;
 }
 
-main form fieldset {
+.events-main form fieldset {
     display: flex;
     align-items: center;
 }
 
-main form fieldset:nth-child(1) {
+.events-main form .filter {
     width: 50%;
     justify-content: space-around;
 }
 
-main form fieldset:nth-child(2) {
+.events-main form .search-bar {
     width: 40%;
-    justify-content: space-between;
+    justify-content: center;
+    gap: .3rem;
 }
 
-main form fieldset:nth-child(2) input {
-    width: 90%;
+.events-main form .search-bar input {
+    width: 100%;
     padding: .3rem 0 !important;
     border-radius: 0%;
 }
 
-main form .loupe{
-    width: 8%;
+.events-main form .loupe {
+    width: 2rem;
+    height: 2rem;
     border-radius: 35%;
     background-color: #efefef;
 }
 
-main form .loupe:hover{
+.events-main form .loupe:hover {
     background-color: #efefef;
 }
 
-main form .loupe img{
+.events-main form .loupe img {
     width: 100%;
     height: 100%;
 }
 
-main .card-container {
+.events-main .card-container {
     display: flex;
     gap: 5rem;
     justify-content: center;
@@ -134,6 +144,7 @@ main .card-container {
 
 .card-container section {
     height: 18rem;
+    width: 15rem;
     box-shadow: .1px .1px 1px .3px black;
 }
 
@@ -183,18 +194,18 @@ footer>div {
 footer>div .redes {
     display: flex;
     justify-content: space-around;
-    height: 50%;
-    width: 15%;
+    width: 7rem;
 }
 
 footer>div .redes a {
-    border-radius: 50%;
+    border-radius: 45%;
+    width: 2rem;
     background-color: white;
 }
 
 footer>div .redes a img {
-    width: 100%;
-    height: 100%;
+    width: 2rem;
+    height: 2rem;
 }
 
 /* CONTACT */
@@ -205,7 +216,6 @@ footer>div .redes a img {
 }
 
 .contact-main .contact-form {
-    width: auto;
     display: inline-block;
     width: 55%;
     margin: 3rem auto;
@@ -227,46 +237,51 @@ footer>div .redes a img {
 
 /* STATS */
 
-body{
-    background-color: #febeac;
-}
-
-table{
+table {
     box-shadow: -1px 1px 5px;
+    text-align: center;
 }
 
-table,th,td,tr{
+table,
+th,
+td,
+tr {
     border: 2px solid black;
     border-collapse: collapse;
 }
 
-.stats-main table{
-    width: 80%;
-    margin: 1rem auto;
+.stats-main .table {
+    width: 100%;
+    margin: 5% 0;
 }
 
-.stats-main table tr{
+.stats-main .table table{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.stats-main table tr {
     background-color: #fce1cb;
 }
 
-.stats-main table .title{
+.stats-main table .title {
     background-color: #8c686b;
 }
 
-.stats-main table .title th{
+.stats-main table .title th {
     padding: .7rem;
     color: #efefef;
 }
 
 /* DETAILS */
 
-.details-main{
+.details-main {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.details-container{
+.details-container {
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -276,7 +291,7 @@ table,th,td,tr{
     background-color: #fce1cb;
 }
 
-.details-container .detail-image{
+.details-container .detail-image {
     width: 45%;
     height: 80%;
     margin: auto auto;
@@ -284,12 +299,12 @@ table,th,td,tr{
     box-shadow: -4px -4px 20px;
 }
 
-.details-container .detail-image img{
+.details-container .detail-image img {
     width: 100%;
     height: 100%;
 }
 
-.details-container .detail-text{
+.details-container .detail-text {
     width: 45%;
     height: 80%;
     margin: auto auto;
@@ -299,4 +314,157 @@ table,th,td,tr{
     justify-content: center;
     background-color: #8c686b;
     color: #efefef;
+}
+
+@media only screen and (max-width: 767px){
+    header>div .navbar {
+        justify-content: flex-end;
+    }
+
+    header>div .navbar .offcanvas{
+        width: 15rem;
+        height: 17.5rem;
+    }
+
+    header>div .navbar .offcanvas-body{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: #5e4b55;
+    }
+    header>div .navbar .offcanvas-body a{
+        background-color: #fce1cb;
+        text-align: center;
+        margin: .5rem 0;
+    }
+
+    footer>div .redes{
+        width: 7rem;
+    }
+    footer>div .redes a{
+        height: auto;
+        width: auto;
+    }
+    footer>div .redes a img{
+        width: 2rem;
+        height: 2rem;
+    }
+
+    /* INDEX */
+
+    main #carouselExample{
+        height: 4rem;
+    }
+    
+    .events-main .card-container{
+        gap: 2rem;
+    }
+
+    /* CONTACT */
+
+    .contact-main .contact-form {
+        width: 90%;
+    }
+
+    /* STATS */
+
+    .stats-main .table {
+        width: 100%;
+        margin: 5% 0;
+    }
+    
+    .stats-main .table table{
+        width: 95%;
+        margin: 0 auto;
+    }
+    
+    .stats-main table tr {
+        background-color: #fce1cb;
+    }
+    
+    .stats-main table .title {
+        background-color: #8c686b;
+    }
+    
+    .stats-main table .title th {
+        padding: .5rem;
+        font-size: .75rem;
+        color: #efefef;
+    }
+
+    .stats-main table th,
+    .stats-main table td{
+        font-size: .65rem;
+    }
+
+
+    /* DETAILS */
+
+    .details-container {
+        width: 90%;
+        margin: 1rem auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        height: 35rem;
+        border: 1px solid black;
+        background-color: #fce1cb;
+    }
+    
+    .details-container .detail-image {
+        width: 90%;
+        height: 12rem;
+        margin: auto auto;
+        border: 1px solid black;
+        box-shadow: -4px -4px 20px;
+    }
+    
+    .details-container .detail-image img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .details-container .detail-text {
+        width: 90%;
+        height: auto;
+        margin: auto auto;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #8c686b;
+        color: #efefef;
+    }
+}
+
+@media only screen and (max-width: 1099px){
+    .events-main form{
+        flex-direction: column;
+        width: 90%;
+        align-items: center;
+        height: 6rem;
+    }
+    .events-main form .filter{
+        width: 100%;
+        flex-direction: row;
+        height: auto;
+        flex-wrap: wrap;
+    }
+    .events-main form .filter>div{
+        width: 5.5rem;
+        display: flex;
+        justify-content: start;
+        gap: .1rem;
+    }
+    main form .search-bar{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: .3rem;
+        width: 90% !important;
+    }
+    
+    .events-main form .search-bar .loupe{
+        width: 1.5rem;
+    }
 }
