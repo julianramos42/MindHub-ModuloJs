@@ -143,13 +143,13 @@ main #carouselExample {
 }
 
 .card-container section {
-    height: 18rem;
+    height: 22rem;
     width: 15rem;
     box-shadow: .1px .1px 1px .3px black;
 }
 
 .card-container section .card-img {
-    height: 60%;
+    height: 50%;
     width: 90%;
     margin: .5rem auto;
     box-shadow: -2px -2px 5px black;
@@ -160,8 +160,13 @@ main #carouselExample {
     width: 100%;
 }
 
-.card-container section .card-body {
-    height: 40%;
+.card-container section .card-body{
+    height: 50%;
+    width: 95%;
+    margin: 0 auto;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
 }
 
 .card-container section .card-body>div {
