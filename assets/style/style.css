@@ -292,6 +292,8 @@ tr {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .details-container {
@@ -417,6 +419,10 @@ tr {
 
     /* DETAILS */
 
+    .details-main{
+        width: 100%;
+    }
+
     .details-container {
         width: 90%;
         margin: 1rem auto;
@@ -483,5 +489,9 @@ tr {
     
     .events-main form .search-bar .loupe{
         width: 1.5rem;
+    }
+
+    .details-main{
+        width: 100%;
     }
 }
