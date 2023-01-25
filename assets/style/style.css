@@ -200,12 +200,12 @@ footer>div .redes {
     display: flex;
     justify-content: space-around;
     width: 7rem;
+    margin: 0 1rem;
 }
 
 footer>div .redes a {
     border-radius: 45%;
     width: 2rem;
-    background-color: white;
 }
 
 footer>div .redes a img {
