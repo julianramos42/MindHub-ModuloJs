@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .favicon {
@@ -44,7 +45,7 @@ header>div>.navbar .offcanvas-body a {
     text-decoration: none;
     color: black;
     background-color: #efefef;
-    padding: .3rem 1rem;
+    padding: .3rem .5rem;
 }
 
 header>div>.navbar .offcanvas-body a:hover {
