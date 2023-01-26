@@ -147,6 +147,7 @@ main #carouselExample {
     height: 25rem;
     width: 15rem;
     box-shadow: .1px .1px 1px .3px black;
+    padding-bottom: .8rem;
 }
 
 .card-container section .card-img {
