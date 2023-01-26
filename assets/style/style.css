@@ -337,6 +337,7 @@ tr {
     }
 
     header>div .navbar .offcanvas{
+        margin-top: 10vh;
         width: 15rem;
         height: 17.5rem;
     }
