@@ -278,6 +278,11 @@ tr {
     background-color: #fce1cb;
 }
 
+.stats-main table tr td,
+.stats-main table tr th{
+    height: 1.7rem;
+}
+
 .stats-main table .title {
     background-color: #8c686b;
 }
@@ -389,7 +394,7 @@ tr {
 
     .stats-main .table {
         width: 100%;
-        margin: 1% 0;
+        margin: 5% 0;
         height: auto;
     }
     
@@ -495,5 +500,9 @@ tr {
 
     .details-main{
         width: 100%;
+    }
+
+    .stats-main .table { 
+        margin: 3% 0;
     }
 }
