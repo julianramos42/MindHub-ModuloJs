@@ -1,8 +1,7 @@
 function createHomeCards() {
   const cardContainer = document.getElementById("home-card-container")
   for (let event of data.events) {
-    let card = document.createElement("section")
-    card.innerHTML = `
+    cardContainer.innerHTML += `
       <section class="card col-lg-2 col-11">
         <div class="card-img">
           <img src="${event.image}" class="card-img-top" alt="${event.name}">
@@ -19,7 +18,6 @@ function createHomeCards() {
         </div>
       </section>
     `
-    cardContainer.appendChild(card)
   }
 }
 createHomeCards()
