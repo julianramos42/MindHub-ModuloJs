@@ -2,6 +2,8 @@ const events = data.events
 const actualDate = data.currentDate
 const pastCardContainer = document.getElementById("past-card-container")
 
+// toma un array, filtra los eventos futuros comparando la fecha actual con la del evento
+// y devuelve un nuevo array con estos eventos
 function pastFilter(events){
   let pastEvents = []
   for(let event of events){
@@ -12,13 +14,15 @@ function pastFilter(events){
   return pastEvents
 }
 
+// toma un array de objetos y envia cada uno a writeCard para crear HTML
 function createCards(list){
   for(let entrie of list){
-    writeCard(entrie,pastCardContainer)
+    writeCard(entrie)
   }
 }
 
-function writeCard(event, container) {
+// toma un objeto y escribe la card
+function writeCard(event) {
   pastCardContainer.innerHTML += `
     <section class="card col-lg-2 col-11">
       <div class="card-img">
