@@ -94,7 +94,10 @@ main #carouselExample {
     width: 80%;
     margin: 2.5rem auto;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 .events-main form fieldset {
@@ -103,12 +106,13 @@ main #carouselExample {
 }
 
 .events-main form .filter {
-    width: 50%;
+    width: 100%;
     justify-content: space-around;
+    gap: 2rem;
 }
 
 .events-main form .search-bar {
-    width: 40%;
+    width: 60%;
     justify-content: center;
     gap: .3rem;
 }
@@ -472,19 +476,23 @@ tr {
         flex-direction: column;
         width: 90%;
         align-items: center;
-        height: 6rem;
+        height: 15rem;
+        gap: 1rem;
     }
     .events-main form .filter{
         width: 100%;
         flex-direction: row;
-        height: auto;
+        height: 100%;
         flex-wrap: wrap;
+        gap: .5rem;
     }
     .events-main form .filter>div{
-        width: 5.5rem;
+        width: 6rem;
+        height: 3rem;
         display: flex;
+        align-items: center;
         justify-content: start;
-        gap: .1rem;
+        gap: .3rem;
     }
     main form .search-bar{
         display: flex;
