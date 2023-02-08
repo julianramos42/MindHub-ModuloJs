@@ -3,6 +3,7 @@ const events = data.events
 const cards = document.getElementsByClassName("card")
 const searchBar = document.getElementById("search-bar")
 const categoryChecksContainer = document.getElementById("filter")
+const form = document.getElementById("form")
 
 
 // FUNCTION TO CREATE ALL CARDS OF AN ARRAY OF EVENTS
@@ -65,15 +66,15 @@ createChecks(events)
 // CHECKBOX LISTENER
 
 categoryChecksContainer.addEventListener("click", (e) => {
-  if(e.target.localName === "input"){
+  if (e.target.localName === "input") {
 
     let categoryCheckeds = checksOn() // return an array of inputs with check
-    let filterEvents = checkboxFilter(events,categoryCheckeds) // return an array of events wich matches that category with value of checks
-    let filterBySearch = searchBarFilter(filterEvents,searchBar.childNodes[1].value) // return an array of events that matches checks and searchbar values
+    let filterEvents = checkboxFilter(events, categoryCheckeds) // return an array of events wich matches that category with value of checks
+    let filterBySearch = searchBarFilter(filterEvents, searchBar.childNodes[1].value) // return an array of events that matches checks and searchbar values
     createHomeCards(filterBySearch)
-    
-    let noChecks = Boolean(... checksOn()) // true or false depends on if any check is checked
-    if(!noChecks){  // if no checks checked, create all cards
+
+    let noChecks = Boolean(...checksOn()) // true or false depends on if any check is checked
+    if (!noChecks) {  // if no checks checked, create all cards
       createHomeCards(events)
     }
   }
@@ -83,21 +84,22 @@ categoryChecksContainer.addEventListener("click", (e) => {
 // SEARCHBAR LISTENER
 
 searchBar.addEventListener("keyup", (e) => {
+
   let search = e.target.value.toLowerCase()
   let categoryCheckeds = checksOn() // return an array of inputs with check
-  let noChecks = Boolean(... checksOn())
-  let filterEvents = searchBarFilter(events,search) // return an array of events wich matches with the search
-  
-  let anySearch = Boolean(... filterEvents)
+  let noChecks = Boolean(...checksOn())
+  let filterEvents = searchBarFilter(events, search) // return an array of events wich matches with the search
 
-  if(!anySearch){
+  let anySearch = Boolean(...filterEvents)
+
+  if (!anySearch) {
     cardContainer.innerHTML = `
       <p>NO SE ENCONTRARON RESULTADOS</p>
     `
-  } else if(!noChecks && anySearch){
+  } else if (!noChecks && anySearch) {
     createHomeCards(filterEvents)
-  } else{
-    let filterByChecks = checkboxFilter(filterEvents,categoryCheckeds) // return an array of events that matches checks and searchbar values
+  } else {
+    let filterByChecks = checkboxFilter(filterEvents, categoryCheckeds) // return an array of events that matches checks and searchbar values
     createHomeCards(filterByChecks)
   }
 })
@@ -105,15 +107,15 @@ searchBar.addEventListener("keyup", (e) => {
 
 // CHECK AND SEARCH FILTER
 
-function searchBarFilter(events,value){
+function searchBarFilter(events, value) {
   let filterEvents = events.filter((event) => event.name.toLowerCase().includes(value.toLowerCase()))
   return filterEvents
 }
 
-function checkboxFilter(events,value){
+function checkboxFilter(events, value) {
   let filterEvents = events.filter((event) => {
-    for(let check of value){
-      if(check.value === event.category){
+    for (let check of value) {
+      if (check.value === event.category) {
         return event
       }
     }
@@ -121,7 +123,13 @@ function checkboxFilter(events,value){
   return filterEvents
 }
 
-function checksOn(){
+function checksOn() {
   let checks = Array.from(categoryChecksContainer.elements).filter((check) => check.checked)
   return checks
 }
+
+
+//
+form.addEventListener("submit", (e) => {
+  e.preventDefault()
+})
