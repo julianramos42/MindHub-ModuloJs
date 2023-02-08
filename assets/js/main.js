@@ -30,7 +30,7 @@ function writeCard(event) {
         </p>
         <div>
           <p class="m-0">Price: $${event.price}</p>
-          <a href="../../assets/html/details.html" class="btn p-1">Details</a>
+          <a href="../../assets/html/details.html?id=${event._id}" class="btn p-1">Details</a>
         </div>
       </div>
     </section>
@@ -72,10 +72,11 @@ categoryChecksContainer.addEventListener("click", (e) => {
     let filterEvents = checkboxFilter(events, categoryCheckeds) // return an array of events wich matches that category with value of checks
     let filterBySearch = searchBarFilter(filterEvents, searchBar.childNodes[1].value) // return an array of events that matches checks and searchbar values
     createHomeCards(filterBySearch)
+    let anyChecks = Boolean(...checksOn()) // true or false depends on if any check is checked
 
-    let noChecks = Boolean(...checksOn()) // true or false depends on if any check is checked
-    if (!noChecks) {  // if no checks checked, create all cards
+    if (!anyChecks) {  // if no checks checked, create all cards
       createHomeCards(events)
+      searchBar.childNodes[1].value = ""
     }
   }
 })
@@ -105,7 +106,7 @@ searchBar.addEventListener("keyup", (e) => {
 })
 
 
-// CHECK AND SEARCH FILTER
+// CHECK AND SEARCH FILTER FUNCTION
 
 function searchBarFilter(events, value) {
   let filterEvents = events.filter((event) => event.name.toLowerCase().includes(value.toLowerCase()))
