@@ -35,7 +35,7 @@ categoryChecksContainer.addEventListener("click", (e) => {
     let anySearch = Boolean(...eventsBySearch)
 
     if(!anyChecks && searchValue === ""){
-      createCards(events, upcomingCardContainer)
+      createCards(upcomingEvents, upcomingCardContainer)
     }else if(!anyChecks && anySearch){
       createCards(eventsBySearch, upcomingCardContainer)
     }else if (!anyMatch) {
