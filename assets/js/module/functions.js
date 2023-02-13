@@ -114,3 +114,61 @@ export function pastFilter(events,date){
   }
   return pastEvents
 }
+
+// STATS FUNCTIONS
+
+export function highestPercentageOfAttendance(events){
+  let highest = 0
+  let highestEvent
+  for(let event of events){
+      let percentageOfAttendance = (event.assistance*100)/event.capacity
+      if(highest === 0 || percentageOfAttendance > highest){
+          highest = percentageOfAttendance
+          highestEvent = event
+      }
+  }
+  return highestEvent
+}
+
+export function lowestPercentageOfAttendance(events){
+  let lowest = 0
+  let lowestEvent
+  for(let event of events){
+      let percentageOfAttendance = (event.assistance*100)/event.capacity
+      if(lowest === 0 || percentageOfAttendance < lowest){
+          lowest = percentageOfAttendance
+          lowestEvent = event
+      }
+  }
+  return lowestEvent
+}
+
+export function largerCapacity(events){
+  let larger = 0
+  let largerCapacityEvent
+  for(let event of events){
+    if(larger === 0 || event.capacity>larger){
+      larger = event.capacity
+      largerCapacityEvent = event
+    }
+  }
+  return largerCapacityEvent
+}
+
+export function upcomingEventsStatistics(events){
+  let categories = Array.from(new Set( events.map(event => event.category)))
+  console.log(categories)
+
+
+  let revenues = []
+  for(let category of categories){
+    console.log(category)
+    let 
+    for(let event of events){
+      if(event.category === category){
+        revenues.push(1)
+      }
+    }
+    console.log(revenues)
+  }
+}
