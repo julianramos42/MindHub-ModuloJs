@@ -1,16 +1,27 @@
-// FUNCTION TO CREATE ALL CARDS OF AN ARRAY OF EVENTS
-
-export function createCards(events, container) {
-    container.innerHTML = ""
-    let aux = ""
-    for (let event of events) {
-      aux += writeCard(event)
-    }
-    container.innerHTML += aux
+export async function getData(){
+  try{
+    const response = await fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    const data = await response.json()
+    return data
+  }
+  catch(error){
+    console.log(`Error: ${error}`)
+  }
 }
-  
+
+
+// FUNCTION TO CREATE ALL CARDS OF AN ARRAY OF EVENTS
+export function createCards(events, container) {
+  container.innerHTML = ""
+  let aux = ""
+  for (let event of events) {
+    aux += writeCard(event)
+  }
+  container.innerHTML += aux
+}
+
 export function writeCard(event) {
-    return `
+  return `
       <section class="card col-lg-2 col-11">
         <div class="card-img">
           <img src="${event.image}" class="card-img-top" alt="${event.name}">
@@ -31,53 +42,75 @@ export function writeCard(event) {
 
 
 // CREATION OF DYNAMIC CHECKBOXS
-
 export function createChecks(events) {
-    let checks = Array.from(new Set(events.map(event => event.category)))
-    let cont = 1
-    for (let check of checks) {
-      writeChecks(check, cont)
-      cont++
-    }
+  let checks = Array.from(new Set(events.map(event => event.category)))
+  let cont = 1
+  for (let check of checks) {
+    writeChecks(check, cont)
+    cont++
+  }
 }
-  
+
 export function writeChecks(check, cont) {
-    categoryChecksContainer.innerHTML += `
-      <div>
-        <input type="checkbox" name="category" id="${cont}" value="${check}">
-        <label for="${cont}">${check}</label>
-      </div>  
-    `
+  categoryChecksContainer.innerHTML += `
+    <div>
+      <input type="checkbox" name="category" id="${cont}" value="${check}">
+      <label for="${cont}">${check}</label>
+    </div>  
+  `
 }
 
 
 // CHECK AND SEARCH FILTER FUNCTION
-
 export function searchBarFilter(events, value) {
-    let filterEvents = events.filter((event) => event.name.toLowerCase().includes(value.toLowerCase()))
-    return filterEvents
+  let filterEvents = events.filter((event) => event.name.toLowerCase().includes(value.toLowerCase()))
+  return filterEvents
 }
-  
+
 export function checkboxFilter(events, value) {
-    let filterEvents = events.filter((event) => {
-      for (let check of value) {
-        if (check.value === event.category) {
-          return event
-        }
+  let filterEvents = events.filter((event) => {
+    for (let check of value) {
+      if (check.value === event.category) {
+        return event
       }
-    })
-    return filterEvents
+    }
+  })
+  return filterEvents
 }
-  
+
+
+//
 const categoryChecksContainer = document.getElementById("filter")
 export function checksOn() {
-    let checks = Array.from(categoryChecksContainer.elements).filter((check) => check.checked)
-    return checks
+  let checks = Array.from(categoryChecksContainer.elements).filter((check) => check.checked)
+  return checks
 }
 
 
-export function preventDefault(form){
-    form.addEventListener("submit", (e) => {
-      e.preventDefault()
-    })
+export function preventDefault(form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+  })
+}
+
+
+// DATE FILTER
+export function upcomingFilter(events,date){
+  let upcomingFilter = []
+  for(let event of events){
+    if(date < event.date){
+      upcomingFilter.push(event)
+    }
   }
+  return upcomingFilter
+}
+
+export function pastFilter(events,date){
+  let pastEvents = []
+  for(let event of events){
+    if(date > event.date){
+      pastEvents.push(event)
+    }
+  }
+  return pastEvents
+}
