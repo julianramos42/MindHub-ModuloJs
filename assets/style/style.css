@@ -240,6 +240,11 @@ footer>div .redes a img {
     background-color: #8c686b;
     color: #efefef;
     padding: 1rem;
+    box-shadow: -1px 1px 5px black;
+}
+
+.contact-main .contact-form .form-control{
+    resize: none;
 }
 
 .contact-form .submit-button {
@@ -256,7 +261,7 @@ footer>div .redes a img {
 /* STATS */
 
 table {
-    box-shadow: -1px 1px 5px;
+    box-shadow: -1px 1px 5px black;
     text-align: center;
 }
 
@@ -264,8 +269,14 @@ table,
 th,
 td,
 tr {
-    border: 2px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
     border-collapse: collapse;
+}
+
+#past-statistics{
+  border-bottom: 2px solid black;  
 }
 
 .stats-main .table {
@@ -285,6 +296,7 @@ tr {
 .stats-main table tr td,
 .stats-main table tr th{
     height: 1.7rem;
+    width: 33.3%;
 }
 
 .stats-main table .title {
@@ -391,42 +403,6 @@ tr {
     .contact-main .contact-form {
         width: 90%;
     }
-
-    /* STATS */
-
-
-
-    .stats-main .table {
-        width: 100%;
-        margin: 5% 0;
-        height: auto;
-    }
-    
-    .stats-main .table table{
-        width: 95%;
-        height: 38rem;
-        margin: 0 auto;
-    }
-    
-    .stats-main table tr {
-        background-color: #fce1cb;
-    }
-    
-    .stats-main table .title {
-        background-color: #8c686b;
-    }
-    
-    .stats-main table .title th {
-        padding: .5rem;
-        font-size: .75rem;
-        color: #efefef;
-    }
-
-    .stats-main table th,
-    .stats-main table td{
-        font-size: .65rem;
-    }
-
 
     /* DETAILS */
 

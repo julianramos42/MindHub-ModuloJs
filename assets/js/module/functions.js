@@ -69,10 +69,8 @@ export function searchBarFilter(events, value) {
 
 export function checkboxFilter(events, value) {
   let filterEvents = events.filter((event) => {
-    for (let check of value) {
-      if (check.value === event.category) {
-        return event
-      }
+    if(value.includes(event.category)){
+      return event
     }
   })
   return filterEvents
@@ -82,7 +80,12 @@ export function checkboxFilter(events, value) {
 //
 const categoryChecksContainer = document.getElementById("filter")
 export function checksOn() {
-  let checks = Array.from(categoryChecksContainer.elements).filter((check) => check.checked)
+  let checks = Array.from(categoryChecksContainer.elements).map((check) => {
+    if(check.checked){
+      return check.value
+    }
+  })
+  checks = checks.filter((e)=>e)
   return checks
 }
 
@@ -156,19 +159,72 @@ export function largerCapacity(events){
 }
 
 export function upcomingEventsStatistics(events){
-  let categories = Array.from(new Set( events.map(event => event.category)))
-  console.log(categories)
+  let upcomingStatistics = [] // ARRAY TO SAVE 3 LIST OF ELEMENTS
+  let upcomingCategories = Array.from(new Set( events.map(event => event.category))) // CATEGORIES OF THE EVENTS
 
 
-  let revenues = []
-  for(let category of categories){
-    console.log(category)
-    let 
+  let upcomingRevenues = [] // REVENUES FROM THE EVENTS
+  for(let category of upcomingCategories){
+    let revenueCont = 0
     for(let event of events){
       if(event.category === category){
-        revenues.push(1)
+        revenueCont += event.estimate*event.price
       }
     }
-    console.log(revenues)
+    upcomingRevenues.push(revenueCont)
   }
+
+
+  let upcomingPercentageOfAttendance = [] // PERCENTAGE OF ATTENDANCE
+  for(let category of upcomingCategories){
+    let estimateAttendance = 0
+    let capacity = 0
+    for(let event of events){
+      if(event.category === category){
+        estimateAttendance += event.estimate
+        capacity += event.capacity
+      }
+    }
+    upcomingPercentageOfAttendance.push( (estimateAttendance*100)/capacity )
+  }
+
+
+  upcomingStatistics.push(upcomingCategories,upcomingRevenues,upcomingPercentageOfAttendance)
+  return upcomingStatistics
+}
+
+
+export function pastEventsStatistics(events){
+  let pastStatistics = [] // ARRAY TO SAVE 3 LIST OF ELEMENTS
+  let pastCategories = Array.from(new Set( events.map(event => event.category))) // CATEGORIES OF THE EVENTS
+
+
+  let pastRevenues = [] // REVENUES FROM THE EVENTS
+  for(let category of pastCategories){
+    let revenueCont = 0
+    for(let event of events){
+      if(event.category === category){
+        revenueCont += event.assistance*event.price
+      }
+    }
+    pastRevenues.push(revenueCont)
+  }
+
+
+  let pastPercentageOfAttendance = [] // PERCENTAGE OF ATTENDANCE
+  for(let category of pastCategories){
+    let assistance = 0
+    let capacity = 0
+    for(let event of events){
+      if(event.category === category){
+        assistance += event.assistance
+        capacity += event.capacity
+      }
+    }
+    pastPercentageOfAttendance.push( (assistance*100)/capacity )
+  }
+
+
+  pastStatistics.push(pastCategories,pastRevenues,pastPercentageOfAttendance)
+  return pastStatistics
 }
