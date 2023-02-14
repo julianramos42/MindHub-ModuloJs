@@ -2,15 +2,17 @@ import { getData, searchBarFilter, checkboxFilter, checksOn, createCards, create
 
 const data = getData()
 
-data.then((response) => {
-  createCards(response.events, cardContainer)
-  createChecks(response.events)
-}).catch((error) => {
-  console.log(error)
-  cardContainer.innerHTML = `
+data
+  .then((response) => {
+    createCards(response.events, cardContainer)
+    createChecks(response.events)
+  })
+  .catch((error) => {
+    console.log(error)
+    cardContainer.innerHTML = `
     <p>An unexpected error has occurred</p>
   `
-})
+  })
 
 
 const cardContainer = document.getElementById("home-card-container")
