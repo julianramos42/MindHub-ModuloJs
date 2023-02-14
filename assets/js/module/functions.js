@@ -21,6 +21,7 @@ export function createCards(events, container) {
 }
 
 export function writeCard(event) {
+  console.log(event)
   return `
       <section class="card col-lg-2 col-11">
         <div class="card-img">

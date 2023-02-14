@@ -60,7 +60,7 @@ data
     })
 
     createCards(pastEvents, pastCardContainer)
-    createChecks(response.events, pastCardContainer)
+    createChecks(pastEvents, pastCardContainer)
     preventDefault(form)
   })
   .catch((error) => {

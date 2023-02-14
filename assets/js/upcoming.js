@@ -61,7 +61,7 @@ data
     })
 
     createCards(upcomingEvents, upcomingCardContainer)
-    createChecks(response.events)
+    createChecks(upcomingEvents)
     preventDefault(form)
   })
   .catch((error) => {
