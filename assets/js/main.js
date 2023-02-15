@@ -1,32 +1,20 @@
 import { getData, searchBarFilter, checkboxFilter, checksOn, createCards, createChecks, preventDefault } from "./module/functions.js"
 
-const data = getData()
-
-data
-  .then((response) => {
-    createCards(response.events, cardContainer)
-    createChecks(response.events)
-  })
-  .catch((error) => {
-    console.log(error)
-    cardContainer.innerHTML = `
-    <p>An unexpected error has occurred</p>
-  `
-  })
-
-
 const cardContainer = document.getElementById("home-card-container")
 const searchBar = document.getElementById("search-bar")
 const categoryChecksContainer = document.getElementById("filter")
 const form = document.getElementById("form")
 
+const data = getData()
+data
+  .then((response) => {
+    createCards(response.events, cardContainer)
+    createChecks(response.events)
+    preventDefault(form)
 
-// CHECKBOX LISTENER
-categoryChecksContainer.addEventListener("click", (e) => {
-  if (e.target.localName === "input") {
-
-    data
-      .then((response) => {
+    // CHECKBOX LISTENER
+    categoryChecksContainer.addEventListener("click", (e) => {
+      if (e.target.localName === "input") {
         let searchValue = searchBar.childNodes[1].value.toLowerCase()
         let categoryCheckeds = checksOn() // return an array of inputs with check
         let filterEvents = checkboxFilter(response.events, categoryCheckeds) // return an array of events wich matches that category with value of checks
@@ -34,7 +22,7 @@ categoryChecksContainer.addEventListener("click", (e) => {
         let eventsBySearch = searchBarFilter(response.events, searchValue)
         createCards(filterBySearch, cardContainer)
 
-        let anyChecks = Boolean(...checksOn()) // true or false depends on if any check is checked
+        let anyChecks = Boolean(...categoryCheckeds) // true or false depends on if any check is checked
         let anyMatch = Boolean(...filterBySearch)
         let anySearch = Boolean(...eventsBySearch)
 
@@ -44,22 +32,14 @@ categoryChecksContainer.addEventListener("click", (e) => {
           createCards(eventsBySearch, cardContainer)
         } else if (!anyMatch) {
           cardContainer.innerHTML = `
-          <p>NO MATCHES FOUND</p>
-        `
+            <p>NO MATCHES FOUND</p>
+          `
         }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-})
+      }
+    })
 
-
-// SEARCHBAR LISTENER
-searchBar.addEventListener("keyup", (e) => {
-
-  data
-    .then((response) => {
+    // SEARCHBAR LISTENER
+    searchBar.addEventListener("keyup", (e) => {
       let search = e.target.value.toLowerCase()
       let categoryCheckeds = checksOn() // return an array of inputs with check
       let filterEvents = searchBarFilter(response.events, search) // return an array of events wich matches with the search
@@ -75,13 +55,14 @@ searchBar.addEventListener("keyup", (e) => {
         createCards(filterByChecks, cardContainer)
       } else if ((anyChecks && !anyMatchWithChecks) || (!anyChecks && !anyMatchWithoutChecks)) {
         cardContainer.innerHTML = `
-        <p>NO MATCHES FOUND</p>
-      `
+          <p>NO MATCHES FOUND</p>
+        `
       }
     })
-    .catch((error) => {
-      console.log(error)
-    })
-})
-
-preventDefault(form)
+  })
+  .catch((error) => {
+    console.log(error)
+    cardContainer.innerHTML = `
+      <p>An unexpected error has occurred</p>
+    `
+  })

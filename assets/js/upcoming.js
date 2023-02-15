@@ -1,16 +1,17 @@
 import { getData, searchBarFilter, checkboxFilter, checksOn, createCards, createChecks, preventDefault, upcomingFilter } from "./module/functions.js"
 
-const data = getData()
-
 const upcomingCardContainer = document.getElementById("upcoming-card-container")
 const searchBar = document.getElementById("search-bar")
 const categoryChecksContainer = document.getElementById("filter")
 const form = document.getElementById("form")
 
-
+const data = getData()
 data
   .then((response) => {
     let upcomingEvents = upcomingFilter(response.events, response.currentDate)
+    createCards(upcomingEvents, upcomingCardContainer)
+    createChecks(upcomingEvents)
+    preventDefault(form)
 
     // CHECKBOX LISTENER
     categoryChecksContainer.addEventListener("click", (e) => {
@@ -22,7 +23,7 @@ data
         let eventsBySearch = searchBarFilter(upcomingEvents, searchValue)
         createCards(filterBySearch, upcomingCardContainer)
 
-        let anyChecks = Boolean(...checksOn()) // true or false depends on if any check is checked
+        let anyChecks = Boolean(...categoryCheckeds) // true or false depends on if any check is checked
         let anyMatch = Boolean(...filterBySearch)
         let anySearch = Boolean(...eventsBySearch)
 
@@ -59,10 +60,6 @@ data
         `
       }
     })
-
-    createCards(upcomingEvents, upcomingCardContainer)
-    createChecks(upcomingEvents)
-    preventDefault(form)
   })
   .catch((error) => {
     console.log(error)

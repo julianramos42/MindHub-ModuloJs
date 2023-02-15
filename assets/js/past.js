@@ -1,15 +1,17 @@
 import { getData, searchBarFilter, checkboxFilter, checksOn, createCards, createChecks, preventDefault, pastFilter } from "./module/functions.js"
 
-const data = getData()
-
 const pastCardContainer = document.getElementById("past-card-container")
 const searchBar = document.getElementById("search-bar")
 const categoryChecksContainer = document.getElementById("filter")
 const form = document.getElementById("form")
 
+const data = getData()
 data
   .then((response) => {
     let pastEvents = pastFilter(response.events, response.currentDate)
+    createCards(pastEvents, pastCardContainer)
+    createChecks(pastEvents, pastCardContainer)
+    preventDefault(form)
 
     // CHECKBOX LISTENER
     categoryChecksContainer.addEventListener("click", (e) => {
@@ -21,7 +23,7 @@ data
         let eventsBySearch = searchBarFilter(pastEvents, searchValue)
         createCards(filterBySearch, pastCardContainer)
 
-        let anyChecks = Boolean(...checksOn()) // true or false depends on if any check is checked
+        let anyChecks = Boolean(...categoryCheckeds) // true or false depends on if any check is checked
         let anyMatch = Boolean(...filterBySearch)
         let anySearch = Boolean(...eventsBySearch)
 
@@ -31,8 +33,8 @@ data
           createCards(eventsBySearch, pastCardContainer)
         } else if (!anyMatch) {
           pastCardContainer.innerHTML = `
-        <p>NO MATCHES FOUND</p>
-      `
+            <p>NO MATCHES FOUND</p>
+          `
         }
       }
     })
@@ -54,14 +56,10 @@ data
         createCards(filterByChecks, pastCardContainer)
       } else if ((anyChecks && !anyMatchWithChecks) || (!anyChecks && !anyMatchWithoutChecks)) {
         pastCardContainer.innerHTML = `
-    <p>NO MATCHES FOUND</p>
-    `
+          <p>NO MATCHES FOUND</p>
+        `
       }
     })
-
-    createCards(pastEvents, pastCardContainer)
-    createChecks(pastEvents, pastCardContainer)
-    preventDefault(form)
   })
   .catch((error) => {
     console.log(error)

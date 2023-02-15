@@ -1,10 +1,10 @@
-export async function getData(){
-  try{
+export async function getData() {
+  try {
     const response = await fetch("https://mindhub-xj03.onrender.com/api/amazing")
     const data = await response.json()
     return data
   }
-  catch(error){
+  catch (error) {
     console.log(`Error: ${error}`)
   }
 }
@@ -21,7 +21,6 @@ export function createCards(events, container) {
 }
 
 export function writeCard(event) {
-  console.log(event)
   return `
       <section class="card col-lg-2 col-11">
         <div class="card-img">
@@ -70,7 +69,7 @@ export function searchBarFilter(events, value) {
 
 export function checkboxFilter(events, value) {
   let filterEvents = events.filter((event) => {
-    if(value.includes(event.category)){
+    if (value.includes(event.category)) {
       return event
     }
   })
@@ -81,13 +80,7 @@ export function checkboxFilter(events, value) {
 //
 const categoryChecksContainer = document.getElementById("filter")
 export function checksOn() {
-  let checks = Array.from(categoryChecksContainer.elements).map((check) => {
-    if(check.checked){
-      return check.value
-    }
-  })
-  checks = checks.filter((e)=>e)
-  return checks
+  return Array.from(categoryChecksContainer.elements).filter((check) => check.checked).map((check) => check.value)
 }
 
 
@@ -99,20 +92,20 @@ export function preventDefault(form) {
 
 
 // DATE FILTER
-export function upcomingFilter(events,date){
+export function upcomingFilter(events, date) {
   let upcomingFilter = []
-  for(let event of events){
-    if(date < event.date){
+  for (let event of events) {
+    if (date < event.date) {
       upcomingFilter.push(event)
     }
   }
   return upcomingFilter
 }
 
-export function pastFilter(events,date){
+export function pastFilter(events, date) {
   let pastEvents = []
-  for(let event of events){
-    if(date > event.date){
+  for (let event of events) {
+    if (date > event.date) {
       pastEvents.push(event)
     }
   }
@@ -121,37 +114,37 @@ export function pastFilter(events,date){
 
 // STATS FUNCTIONS
 
-export function highestPercentageOfAttendance(events){
+export function highestPercentageOfAttendance(events) {
   let highest = 0
   let highestEvent
-  for(let event of events){
-      let percentageOfAttendance = (event.assistance*100)/event.capacity
-      if(highest === 0 || percentageOfAttendance > highest){
-          highest = percentageOfAttendance
-          highestEvent = event
-      }
+  for (let event of events) {
+    let percentageOfAttendance = (event.assistance * 100) / event.capacity
+    if (highest === 0 || percentageOfAttendance > highest) {
+      highest = percentageOfAttendance
+      highestEvent = event
+    }
   }
   return highestEvent
 }
 
-export function lowestPercentageOfAttendance(events){
+export function lowestPercentageOfAttendance(events) {
   let lowest = 0
   let lowestEvent
-  for(let event of events){
-      let percentageOfAttendance = (event.assistance*100)/event.capacity
-      if(lowest === 0 || percentageOfAttendance < lowest){
-          lowest = percentageOfAttendance
-          lowestEvent = event
-      }
+  for (let event of events) {
+    let percentageOfAttendance = (event.assistance * 100) / event.capacity
+    if (lowest === 0 || percentageOfAttendance < lowest) {
+      lowest = percentageOfAttendance
+      lowestEvent = event
+    }
   }
   return lowestEvent
 }
 
-export function largerCapacity(events){
+export function largerCapacity(events) {
   let larger = 0
   let largerCapacityEvent
-  for(let event of events){
-    if(larger === 0 || event.capacity>larger){
+  for (let event of events) {
+    if (larger === 0 || event.capacity > larger) {
       larger = event.capacity
       largerCapacityEvent = event
     }
@@ -159,17 +152,17 @@ export function largerCapacity(events){
   return largerCapacityEvent
 }
 
-export function upcomingEventsStatistics(events){
+export function upcomingEventsStatistics(events) {
   let upcomingStatistics = [] // ARRAY TO SAVE 3 LIST OF ELEMENTS
-  let upcomingCategories = Array.from(new Set( events.map(event => event.category))) // CATEGORIES OF THE EVENTS
+  let upcomingCategories = Array.from(new Set(events.map(event => event.category))) // CATEGORIES OF THE EVENTS
 
 
   let upcomingRevenues = [] // REVENUES FROM THE EVENTS
-  for(let category of upcomingCategories){
+  for (let category of upcomingCategories) {
     let revenueCont = 0
-    for(let event of events){
-      if(event.category === category){
-        revenueCont += event.estimate*event.price
+    for (let event of events) {
+      if (event.category === category) {
+        revenueCont += event.estimate * event.price
       }
     }
     upcomingRevenues.push(revenueCont)
@@ -177,35 +170,35 @@ export function upcomingEventsStatistics(events){
 
 
   let upcomingPercentageOfAttendance = [] // PERCENTAGE OF ATTENDANCE
-  for(let category of upcomingCategories){
+  for (let category of upcomingCategories) {
     let estimateAttendance = 0
     let capacity = 0
-    for(let event of events){
-      if(event.category === category){
+    for (let event of events) {
+      if (event.category === category) {
         estimateAttendance += event.estimate
         capacity += event.capacity
       }
     }
-    upcomingPercentageOfAttendance.push( (estimateAttendance*100)/capacity )
+    upcomingPercentageOfAttendance.push((estimateAttendance * 100) / capacity)
   }
 
 
-  upcomingStatistics.push(upcomingCategories,upcomingRevenues,upcomingPercentageOfAttendance)
+  upcomingStatistics.push(upcomingCategories, upcomingRevenues, upcomingPercentageOfAttendance)
   return upcomingStatistics
 }
 
 
-export function pastEventsStatistics(events){
+export function pastEventsStatistics(events) {
   let pastStatistics = [] // ARRAY TO SAVE 3 LIST OF ELEMENTS
-  let pastCategories = Array.from(new Set( events.map(event => event.category))) // CATEGORIES OF THE EVENTS
+  let pastCategories = Array.from(new Set(events.map(event => event.category))) // CATEGORIES OF THE EVENTS
 
 
   let pastRevenues = [] // REVENUES FROM THE EVENTS
-  for(let category of pastCategories){
+  for (let category of pastCategories) {
     let revenueCont = 0
-    for(let event of events){
-      if(event.category === category){
-        revenueCont += event.assistance*event.price
+    for (let event of events) {
+      if (event.category === category) {
+        revenueCont += event.assistance * event.price
       }
     }
     pastRevenues.push(revenueCont)
@@ -213,19 +206,19 @@ export function pastEventsStatistics(events){
 
 
   let pastPercentageOfAttendance = [] // PERCENTAGE OF ATTENDANCE
-  for(let category of pastCategories){
+  for (let category of pastCategories) {
     let assistance = 0
     let capacity = 0
-    for(let event of events){
-      if(event.category === category){
+    for (let event of events) {
+      if (event.category === category) {
         assistance += event.assistance
         capacity += event.capacity
       }
     }
-    pastPercentageOfAttendance.push( (assistance*100)/capacity )
+    pastPercentageOfAttendance.push((assistance * 100) / capacity)
   }
 
 
-  pastStatistics.push(pastCategories,pastRevenues,pastPercentageOfAttendance)
+  pastStatistics.push(pastCategories, pastRevenues, pastPercentageOfAttendance)
   return pastStatistics
 }
